@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Orbit | L'Étoile Montante du Gaming Social</title>
+
+    <!-- SEO Optimization -->
+    <meta name="description"
+        content="Orbit est l'application de gaming social #1 au Cameroun. Jouez à Aviator, Trade, et Crystal. Gagnez des récompenses réelles via MTN & Orange Money.">
+    <meta name="keywords"
+        content="Orbit Game, Aviator Cameroun, Gaming Social, Orange Money, MTN Mobile Money, Gagner Cash">
+    <meta name="author" content="Orbit Team">
+    <link rel="icon" href="./img/logo.png" type="image/png">
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons & Animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header / Navbar -->
+    <nav class="glass-header">
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <img src="./img/logo.png" alt="Orbit Logo">
+                <span class="logo-text">ORBIT</span>
+            </a>
+            <div class="nav-links desktop-only">
+                <a href="#games">Jeux</a>
+                <a href="#demo">Live Demo</a>
+                <a href="#how">Comment jouer</a>
+                <a href="#support">Support</a>
+            </div>
+            <div class="nav-actions">
+                <a href="https://expo.dev/artifacts/eas/41PRtk5VHVY53PUZ2quhPU.apk" class="btn-premium">Télécharger</a>
+                <button class="mobile-menu-btn" id="menuBtn">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="menu-header">
+            <span class="logo-text">MENU</span>
+            <i class="fa-solid fa-xmark" id="closeMenu"></i>
+        </div>
+        <div class="menu-links">
+            <a href="#games">Nos Jeux</a>
+            <a href="#demo">Demo Aviator</a>
+            <a href="#how">Instructions</a>
+            <a href="#support">Contact</a>
+        </div>
+        <div class="menu-footer">
+            <a href="#download" class="btn-premium w-100">C'est parti !</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="blob-bg"></div>
+        <div class="container hero-grid">
+            <div class="hero-text" data-aos="fade-up">
+                <div class="status-badge">
+                    <span class="pulse"></span> Version 2.0 Maintenant Disponible
+                </div>
+                <h1>Vivez l'expérience <span class="text-gradient">Orbit</span></h1>
+                <p>La première plateforme de gaming social en Afrique qui récompense votre talent. Sécurité, fun et
+                    gains instantanés.</p>
+                <div class="download-row">
+                    <a href="https://expo.dev/artifacts/eas/41PRtk5VHVY53PUZ2quhPU.apk" class="row-btn"
+                        id="googlePlayBtn">
+                        <i class="fa-brands fa-android"></i>
+                        <div class="store-text">
+                            <small>Télécharger pour</small>
+                            <span>Android (.APK)</span>
+                        </div>
+                    </a>
+                    <a href="#" class="store-btn bt-ios" id="appStoreBtn">
+                        <i class="fa-brands fa-apple"></i>
+                        <div class="store-text">
+                            <small>Coming soon on</small>
+                            <span>App Store</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual" data-aos="zoom-out" data-aos-delay="200">
+                <div class="floating-mockup">
+                    <div class="screen-content">
+                        <img src="./img/logo.png" alt="Orbit App">
+                    </div>
+                </div>
+                <!-- Glass Decorative Elements -->
+                <div class="glass-card g-1">
+                    <i class="fa-solid fa-users"></i>
+                    <span>+50k Joueurs</span>
+                </div>
+                <div class="glass-card g-2">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Retraits Instantanés</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aviator Live Demo Section -->
+    <section class="demo-section" id="demo">
+        <div class="container">
+            <div class="section-title text-center" data-aos="fade-up">
+                <span class="sub">Expérience en Direct</span>
+                <h2>Regardez le gain <span class="text-gradient">S'envoler</span></h2>
+                <p>Voyez par vous-même comment votre mise se transforme avec le multiplicateur Orbit Aviator.</p>
+            </div>
+
+            <div class="aviator-demo-box" data-aos="fade-up">
+                <div class="demo-header">
+                    <div class="demo-user">
+                        <div class="avatar">EB</div>
+                        <div>
+                            <strong>Erne_Player</strong>
+                            <p>En plein jeu...</p>
+                        </div>
+                    </div>
+                    <div class="demo-balance">
+                        <span id="demoBalance">10,000</span> <small>FCFA</small>
+                    </div>
+                </div>
+                <div class="demo-display">
+                    <div class="plane-container" id="planeContainer">
+                        <i class="fa-solid fa-plane plane-icon" id="planeIcon"></i>
+                    </div>
+                    <div class="multiplier-text" id="multiplierText">1.00x</div>
+                    <canvas id="aviatorPath"></canvas>
+                </div>
+                <div class="demo-controls">
+                    <div class="bet-info">
+                        <p>Mise active: <strong>1,000 FCFA</strong></p>
+                        <p>Gain potentiel: <span id="potentialProfit">0</span> FCFA</p>
+                    </div>
+                    <button class="btn-cashout" id="cashoutBtn">CASHOUT</button>
+                </div>
+                <div class="demo-footer">
+                    <span>* Simulation basée sur des sessions réelles</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Games -->
+    <section class="games-section" id="games">
+        <div class="container">
+            <div class="section-title" data-aos="fade-right">
+                <span class="sub">Nos Jeux</span>
+                <h2>Une bibliothèque <span class="text-gradient">Unique</span></h2>
+            </div>
+            <div class="games-container">
+                <div class="game-item" data-aos="fade-up">
+                    <div class="game-img-wrapper av-color">
+                        <i class="fa-solid fa-plane-up"></i>
+                    </div>
+                    <h3>Orbit Aviator</h3>
+                    <p>Le frisson ultime. Surveillez le multiplicateur et encaissez avant le crash !</p>
+                </div>
+                <div class="game-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="game-img-wrapper tr-color">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3>Orbit Trade</h3>
+                    <p>Devenez un pro du trading social. Prédisez les courbes et gagnez gros.</p>
+                </div>
+                <div class="game-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="game-img-wrapper cr-color">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h3>Crystal Maze</h3>
+                    <p>Alignez les cristaux et débloquez des bonus incroyables.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Availability / Countries Section -->
+    <section class="availability-section" id="countries">
+        <div class="container text-center">
+            <div class="section-title" data-aos="fade-up">
+                <span class="sub">Disponibilité Régionale</span>
+                <h2>Présent dans <span class="text-gradient">3 Pays</span></h2>
+                <p>Orbit est fier de servir les gamers dans ces régions. De nouveaux pays arrivent bientôt !</p>
+            </div>
+            <div class="countries-grid">
+                <div class="country-card" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="./img/cameroun.webp" alt="Cameroun Flag" class="flag-img">
+                    <h4>Cameroun</h4>
+                    <span class="status-label">Actif</span>
+                </div>
+                <div class="country-card" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="./img/benin.webp" alt="Bénin Flag" class="flag-img">
+                    <h4>Bénin</h4>
+                    <span class="status-label">Actif</span>
+                </div>
+                <div class="country-card" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="./img/burkina.webp" alt="Burkina Faso Flag" class="flag-img">
+                    <h4>Burkina Faso</h4>
+                    <span class="status-label">Actif</span>
+                </div>
+                <div class="country-card developer-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="coming-soon-circle">
+                        <i class="fa-solid fa-earth-africa"></i>
+                    </div>
+                    <h4>Autres Pays</h4>
+                    <span class="status-label dev">En développement...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works (Paiement) -->
+    <section class="how-section" id="how">
+        <div class="container">
+            <div class="how-grid">
+                <div class="how-visual" data-aos="fade-right">
+                    <div class="payment-card">
+                        <div class="p-header">
+                            <img src="./img/orange.webp" alt="Orange">
+                            <img src="./img/mtn.webp" alt="MTN">
+                        </div>
+                        <div class="p-body">
+                            <span>Transaction ID</span>
+                            <strong>#ORB-584729</strong>
+                        </div>
+                        <div class="p-footer">
+                            <div class="success-dot"></div> Retrait Réussi
+                        </div>
+                    </div>
+                </div>
+                <div class="how-text" data-aos="fade-left">
+                    <span class="sub">Simplicité & Sécurité</span>
+                    <h2>Payez et soyez payé <span class="text-gradient">Localement</span></h2>
+                    <p>Pas besoin de carte bancaire. Nous utilisons les services que vous connaissez et aimez déjà au
+                        Cameroun.</p>
+                    <ul class="how-list">
+                        <li><i class="fa-solid fa-check"></i> Orange Money & MTN MoMo</li>
+                        <li><i class="fa-solid fa-check"></i> Pas de frais cachés</li>
+                        <li><i class="fa-solid fa-check"></i> Support WhatsApp 24/7</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Popup Modal -->
+    <div class="modal-overlay" id="devModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-body">
+                <div class="modal-icon">
+                    <i class="fa-solid fa-hammer"></i>
+                </div>
+                <h2>En cours de développement</h2>
+                <p>Cette fonctionnalité arrive bientôt ! Nous travaillons dur pour vous l'offrir.</p>
+                <p class="modal-subtitle">Revenez nous voir régulièrement pour les mises à jour.</p>
+                <button class="btn-modal-close" id="confirmBtn">D'accord</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pre-footer Download Section -->
+    <section class="pre-footer-download" data-aos="fade-up">
+        <div class="container text-center">
+            <h2>Prêt à commencer l'aventure ?</h2>
+            <p>Téléchargez l'application officielle Orbit maintenant et commencez à gagner.</p>
+            <div class="download-row justify-center" style="justify-content: center; margin-top: 30px;">
+                <a href="https://expo.dev/artifacts/eas/41PRtk5VHVY53PUZ2quhPU.apk" class="store-btn">
+                    <i class="fa-brands fa-android"></i>
+                    <div class="store-text">
+                        <small>Obtenez-le sur</small>
+                        <span>Android (APK)</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="support">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="./img/logo.png" alt="Orbit">
+                        <span class="logo-text">ORBIT</span>
+                    </div>
+                    <p>Rejoignez la révolution Orbit et transformez vos sessions de jeu en opportunités réelles.</p>
+                </div>
+                <div class="footer-nav">
+                    <h4>Navigation</h4>
+                    <a href="#demo">Aviator Demo</a>
+                    <a href="#games">Catalogue Jeux</a>
+                    <a href="#how">Paiements</a>
+                </div>
+                <div class="footer-social">
+                    <h4>Réseaux Sociaux</h4>
+                    <div class="social-icons">
+                        <a href="https://chat.whatsapp.com/F906Qv5AJYnJgxiklzkdX2"><i
+                                class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://t.me/orbitrd"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="https://www.facebook.com/orbit62039?mibextid=rS40aB7S9Ucbxw6v"><i
+                                class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Orbit. Développé avec passion pour l'Afrique.</p>
+                <div class="developer-tag">By <strong>Orbit</strong></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
