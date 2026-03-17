@@ -159,6 +159,63 @@
         </div>
     </section>
 
+    <!-- Crystal Game Demo Section -->
+    <section class="demo-section crystal-demo" id="crystal-demo">
+        <div class="container">
+            <div class="section-title text-center" data-aos="fade-up">
+                <span class="sub">Jeu de Puzzle</span>
+                <h2>Jouez à <span class="text-gradient">Crystal Maze</span></h2>
+                <p>Alignez 3 cristaux ou plus pour déclencher des combos explosifs et accumuler des gains.</p>
+            </div>
+
+            <div class="crystal-demo-box" data-aos="fade-up">
+                <div class="demo-header">
+                    <div class="demo-user">
+                        <div class="avatar crystal-av">CR</div>
+                        <div>
+                            <strong>Crystal_Master</strong>
+                            <p>En plein défi...</p>
+                        </div>
+                    </div>
+                    <div class="demo-balance">
+                        <span id="crystalBalance">10,000</span> <small>FCFA</small>
+                    </div>
+                </div>
+
+                <div class="crystal-board-container">
+                    <div class="crystal-board" id="crystalBoard"></div>
+                    <div class="crystal-overlay" id="crystalOverlay">
+                        <button class="btn-play-crystal" id="playCrystalBtn">Commencer le jeu</button>
+                    </div>
+                </div>
+
+                <div class="crystal-controls">
+                    <div class="crystal-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Score:</span>
+                            <span class="stat-value" id="crystalScore">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Combo:</span>
+                            <span class="stat-value combo-count" id="crystalCombo">0x</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Temps:</span>
+                            <span class="stat-value" id="crystalTime">60s</span>
+                        </div>
+                    </div>
+                    <div class="crystal-actions">
+                        <button class="btn-crystal-again" id="restartCrystalBtn">Rejouer</button>
+                    </div>
+                </div>
+
+                <div class="demo-footer">
+                    <span>* Simulation basée sur le gameplay réel de Crystal Maze</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Featured Games -->
     <section class="games-section" id="games">
         <div class="container">

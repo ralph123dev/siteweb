@@ -497,6 +497,246 @@ body {
     color: var(--text-muted);
 }
 
+/* Crystal Game Demo Styles */
+.crystal-demo-box {
+    background: var(--bg-card);
+    border-radius: 30px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.crystal-board-container {
+    position: relative;
+    padding: 30px;
+    background: #050510;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crystal-board {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    background: rgba(98, 0, 234, 0.1);
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 450px;
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+.crystal-item {
+    aspect-ratio: 1;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: all 0.2s ease;
+    position: relative;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.crystal-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px currentColor;
+}
+
+.crystal-item.selected {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px currentColor, inset 0 0 20px rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.crystal-red {
+    background: linear-gradient(135deg, #FF1744, #FF5252);
+    box-shadow: 0 0 15px rgba(255, 23, 68, 0.4);
+}
+
+.crystal-blue {
+    background: linear-gradient(135deg, #00B0FF, #40C4FF);
+    box-shadow: 0 0 15px rgba(0, 176, 255, 0.4);
+}
+
+.crystal-green {
+    background: linear-gradient(135deg, #00E676, #69F0AE);
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+}
+
+.crystal-yellow {
+    background: linear-gradient(135deg, #FFEB3B, #FFD600);
+    box-shadow: 0 0 15px rgba(255, 235, 59, 0.4);
+}
+
+.crystal-purple {
+    background: linear-gradient(135deg, #D500F9, #E040FB);
+    box-shadow: 0 0 15px rgba(213, 0, 249, 0.4);
+}
+
+.crystal-orange {
+    background: linear-gradient(135deg, #FF6D00, #FF9100);
+    box-shadow: 0 0 15px rgba(255, 109, 0, 0.4);
+}
+
+.crystal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    backdrop-filter: blur(3px);
+    border-radius: 20px;
+    transition: opacity 0.3s;
+}
+
+.crystal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.btn-play-crystal {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 20px 50px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(108, 59, 255, 0.4);
+    transition: 0.3s;
+}
+
+.btn-play-crystal:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(108, 59, 255, 0.6);
+}
+
+.crystal-controls {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid var(--border);
+}
+
+.crystal-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--secondary);
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.combo-count.active {
+    color: #FFD600;
+    animation: pulse-combo 0.3s ease;
+}
+
+@keyframes pulse-combo {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.crystal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-crystal-again {
+    background: rgba(108, 59, 255, 0.2);
+    color: var(--primary);
+    padding: 12px 30px;
+    border-radius: 12px;
+    border: 2px solid var(--primary);
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-crystal-again:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.crystal-av {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+/* Matching animation */
+@keyframes match-pop {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.crystal-popping {
+    animation: match-pop 0.4s ease-out forwards;
+}
+
+/* Fall animation */
+@keyframes fall {
+    to {
+        transform: translateY(0);
+    }
+}
+
+.crystal-falling {
+    animation: fall 0.3s ease-in;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .crystal-board {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .stat-item {
+        flex: 1;
+        min-width: 80px;
+    }
+}
+
 /* Games Section */
 .games-section {
     padding: 100px 0;

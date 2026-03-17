@@ -138,4 +138,236 @@ document.addEventListener('DOMContentLoaded', () => {
             closeDevModal();
         }
     });
+
+    // 5. Crystal Game Demo Logic
+    const CRYSTAL_TYPES = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
+    const BOARD_SIZE = 6;
+    const MATCH_MIN = 3;
+    
+    let crystalBoard = [];
+    let crystalScore = 0;
+    let crystalBalance = 10000;
+    let crystalCombo = 0;
+    let gameRunning = false;
+    let gameTime = 60;
+    let gameTimer = null;
+    let selectedCrystal = null;
+
+    const crystalBoardEl = document.getElementById('crystalBoard');
+    const crystalOverlay = document.getElementById('crystalOverlay');
+    const playCrystalBtn = document.getElementById('playCrystalBtn');
+    const restartCrystalBtn = document.getElementById('restartCrystalBtn');
+    const scoreEl = document.getElementById('crystalScore');
+    const balanceEl2 = document.getElementById('crystalBalance');
+    const comboEl = document.getElementById('crystalCombo');
+    const timeEl = document.getElementById('crystalTime');
+
+    // Initialize crystal board with random crystals
+    const initCrystalBoard = () => {
+        crystalBoard = [];
+        for (let i = 0; i < BOARD_SIZE; i++) {
+            crystalBoard[i] = [];
+            for (let j = 0; j < BOARD_SIZE; j++) {
+                crystalBoard[i][j] = {
+                    type: CRYSTAL_TYPES[Math.floor(Math.random() * CRYSTAL_TYPES.length)],
+                    removed: false
+                };
+            }
+        }
+    };
+
+    // Render the crystal board
+    const renderCrystalBoard = () => {
+        crystalBoardEl.innerHTML = '';
+        for (let i = 0; i < BOARD_SIZE; i++) {
+            for (let j = 0; j < BOARD_SIZE; j++) {
+                const crystal = crystalBoard[i][j];
+                if (!crystal.removed) {
+                    const el = document.createElement('div');
+                    el.className = `crystal-item crystal-${crystal.type}`;
+                    el.dataset.row = i;
+                    el.dataset.col = j;
+                    el.innerHTML = '✨';
+                    el.addEventListener('click', () => handleCrystalClick(i, j, el));
+                    crystalBoardEl.appendChild(el);
+                }
+            }
+        }
+    };
+
+    // Handle crystal click
+    const handleCrystalClick = (row, col, el) => {
+        if (!gameRunning) return;
+
+        if (selectedCrystal === null) {
+            selectedCrystal = { row, col };
+            el.classList.add('selected');
+        } else {
+            // Clear previous selection
+            document.querySelectorAll('.crystal-item.selected').forEach(e => e.classList.remove('selected'));
+
+            // Check if adjacent
+            const rowDiff = Math.abs(selectedCrystal.row - row);
+            const colDiff = Math.abs(selectedCrystal.col - col);
+
+            if (rowDiff + colDiff === 1) {
+                // Swap crystals
+                [crystalBoard[selectedCrystal.row][selectedCrystal.col], crystalBoard[row][col]] = 
+                [crystalBoard[row][col], crystalBoard[selectedCrystal.row][selectedCrystal.col]];
+                
+                selectedCrystal = null;
+                checkMatches();
+            } else {
+                selectedCrystal = { row, col };
+                el.classList.add('selected');
+            }
+        }
+    };
+
+    // Check for matching crystals
+    const checkMatches = () => {
+        let matches = [];
+        
+        // Check horizontal matches
+        for (let i = 0; i < BOARD_SIZE; i++) {
+            for (let j = 0; j < BOARD_SIZE - 2; j++) {
+                const a = crystalBoard[i][j];
+                const b = crystalBoard[i][j + 1];
+                const c = crystalBoard[i][j + 2];
+                
+                if (!a.removed && !b.removed && !c.removed && 
+                    a.type === b.type && b.type === c.type) {
+                    matches.push([i, j], [i, j + 1], [i, j + 2]);
+                }
+            }
+        }
+
+        // Check vertical matches
+        for (let j = 0; j < BOARD_SIZE; j++) {
+            for (let i = 0; i < BOARD_SIZE - 2; i++) {
+                const a = crystalBoard[i][j];
+                const b = crystalBoard[i + 1][j];
+                const c = crystalBoard[i + 2][j];
+                
+                if (!a.removed && !b.removed && !c.removed && 
+                    a.type === b.type && b.type === c.type) {
+                    matches.push([i, j], [i + 1, j], [i + 2, j]);
+                }
+            }
+        }
+
+        // Remove duplicates
+        matches = [...new Set(matches.map(m => m.join(',')))].map(m => m.split(',').map(Number));
+
+        if (matches.length > 0) {
+            crystalCombo++;
+            comboEl.classList.add('active');
+            setTimeout(() => comboEl.classList.remove('active'), 300);
+            
+            const points = matches.length * 10 * crystalCombo;
+            crystalScore += points;
+            scoreEl.innerText = crystalScore;
+            
+            const gains = Math.floor(points / 10);
+            crystalBalance += gains;
+            balanceEl2.innerText = crystalBalance.toLocaleString('fr-FR');
+            
+            comboEl.innerText = `${crystalCombo}x`;
+
+            // Animate removals
+            matches.forEach(([i, j]) => {
+                crystalBoard[i][j].removed = true;
+            });
+
+            // Remove from view and refill
+            setTimeout(() => {
+                refillBoard();
+                renderCrystalBoard();
+                checkMatches();
+            }, 300);
+        } else {
+            crystalCombo = 0;
+            comboEl.innerText = '0x';
+            renderCrystalBoard();
+        }
+    };
+
+    // Refill board after matches
+    const refillBoard = () => {
+        // Gravity - drop pieces
+        for (let j = 0; j < BOARD_SIZE; j++) {
+            let writePos = BOARD_SIZE - 1;
+            for (let i = BOARD_SIZE - 1; i >= 0; i--) {
+                if (!crystalBoard[i][j].removed) {
+                    crystalBoard[writePos][j] = crystalBoard[i][j];
+                    if (writePos !== i) {
+                        crystalBoard[i][j].removed = true;
+                    }
+                    writePos--;
+                }
+            }
+        }
+
+        // Fill empty spaces with new crystals
+        for (let i = 0; i < BOARD_SIZE; i++) {
+            for (let j = 0; j < BOARD_SIZE; j++) {
+                if (crystalBoard[i][j].removed) {
+                    crystalBoard[i][j] = {
+                        type: CRYSTAL_TYPES[Math.floor(Math.random() * CRYSTAL_TYPES.length)],
+                        removed: false
+                    };
+                }
+            }
+        }
+    };
+
+    // Start crystal game
+    const startCrystalGame = () => {
+        if (gameRunning) return;
+        
+        gameRunning = true;
+        gameTime = 60;
+        crystalScore = 0;
+        crystalCombo = 0;
+        crystalBalance = 10000;
+        selectedCrystal = null;
+
+        scoreEl.innerText = '0';
+        comboEl.innerText = '0x';
+        balanceEl2.innerText = '10,000';
+        timeEl.innerText = '60s';
+
+        crystalOverlay.classList.add('hidden');
+
+        initCrystalBoard();
+        renderCrystalBoard();
+
+        // Game timer
+        gameTimer = setInterval(() => {
+            gameTime--;
+            timeEl.innerText = gameTime + 's';
+
+            if (gameTime <= 0) {
+                endCrystalGame();
+            }
+        }, 1000);
+    };
+
+    // End crystal game
+    const endCrystalGame = () => {
+        gameRunning = false;
+        clearInterval(gameTimer);
+        crystalOverlay.classList.remove('hidden');
+
+        const finalGains = Math.floor(crystalScore / 10);
+        alert(`Partie terminée ! Score: ${crystalScore}\nGains: ${finalGains.toLocaleString('fr-FR')} FCFA`);
+    };
+
+    // Event listeners
+    playCrystalBtn?.addEventListener('click', startCrystalGame);
+    restartCrystalBtn?.addEventListener('click', startCrystalGame);
+
+    // Initialize on load
+    initCrystalBoard();
+    renderCrystalBoard();
 });
